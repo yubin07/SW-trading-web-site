@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta chartset="UTF-8">
+        <title>Userpage</title>
+        <!-- link the css file -->
+        <link rel="stylesheet" href="static/style.css"> 
+        <!-- link for the icons in the website -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>   
+        <script type="text/javascript" src="../static/script.js"></script> 
+    </head>
+    <body>
+        <!-- the section where the menu bar is -->
+        <section id="header">  
+            <div>
+                <!-- The navigation bar -->
+                <!-- activate is the page we are in actually -->
+                <ul id="navbar">
+                    <li><a class="active" href="{{url_for('home')}}">Home</a></li>
+             
+                <ul id="navbar">
+                    <li><a href="{{url_for('followee')}}">Followee</a></li>
+                    <li><a href="{{url_for('mypage')}}"><i class="fas fa-user"></i></a></li>
+                    <li><a href="{{url_for('logout')}}">Logout</a></li>
+                </ul>
+            </div>
+
+        </section>
+
+        <table>
+            <tr valign="top">
+                <!-- 유저명에 + 유저 정보와 마지막 접속 시간 정보 출력 -->
+                <td>
+                    <!-- 유저명 출력 -->
+                    <h1>User: {{ user.username }}</h1></td>
+                    {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+                    
+                    <!-- 내가 팔로잉하는 사람이 아닌 유저의 페이지라면 팔로우 버튼 활성화 -->
+                    {% if not current_user.is_following(user) %}
+                    <p><a href="{{ url_for('follow', username=user.username) }}">Follow</a></p>
+                    <!-- 내가 팔로잉하는 사람인 유저의 페이지라면 언팔로우 버튼 활성화 -->
+                    {% else %}
+                    <p><a href="{{ url_for('unfollow', username=user.username) }}">Unfollow</a></p>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

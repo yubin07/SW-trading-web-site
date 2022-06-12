@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta chartset="UTF-8">
+        <title>followee</title>
+        <!-- link the css file -->
+        <link rel="stylesheet" href="static/style.css"> 
+        <!-- link for the icons in the website -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>  
+        <script type="text/javascript" src="../static/script.js"></script>  
+    </head>
+    <body>
+        <!-- the section where the menu bar is -->
+        <section id="header">  
+            <div>
+                <!-- The navigation bar -->
+                <!-- activate is the page we are in actually -->
+                <ul id="navbar">
+                    <li><a href="{{url_for('home')}}">Home</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul id="navbar">
+                    <li><a class="active" href="{{url_for('followee')}}">Followee</a></li>
+                    <li><a href="{{url_for('mypage')}}"><i class="fas fa-user"></i></a></li>
+                    <li><a href="{{url_for('logout')}}">Logout</a></li>
+                </ul>
+            </div>
+        </section>
+        <!--show follow list-->
+        <h5>Follow List</h5>
+        <table class="prod-table" id="prod-table">
+            <thead>
+                <tr>
+                    <th>user</th>
+                </tr>
+            </thead>{% for follower in selected_user.BACKREF_TO_FOLLOWERS %}
+              
+                <tr>
+                    <td><a href="{{url_for('user', username=follower.username)}}"> {{followed.follow().all()}}</a></td>
+                    
+                    {% endfor %} 
+                </tr>
+                   
+           
+           
+            
+        </table>
+
+    </body>
+</html>

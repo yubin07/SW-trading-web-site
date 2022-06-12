@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta chartset="UTF-8">
+        <title>Edit!</title>
+        <!-- link the css file -->
+        <link rel="stylesheet" href="static/style.css"> 
+        <!-- link for the icons in the website -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>   
+        <script type="text/javascript" src="../static/script.js"></script> 
+    </head>
+    <body>
+        <!-- the section where the menu bar is -->
+        <nav id="header">  
+            <div>
+                <!-- The navigation bar -->
+                <!-- activate is the page we are in actually -->
+                <ul id="navbar">
+                    <li><a href="{{url_for('home')}}">Home</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul id="navbar">
+                    <li><a href="{{url_for('followee')}}">Followee</a></li>
+                    <li><a class="active" href="{{url_for('mypage')}}"><i class="fas fa-user"></i></a></li>
+                    <li><a href="{{url_for('logout')}}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section>
+            <form action="/edit/{{product.id}}" method="POST">
+                <h3>Edit your product!</h3><br>
+                Name
+                <input type="text" name="pname" value="{{product.pname}}"/></br>
+                Description<br>
+                <input type="text" name="pdescript" value="{{product.pdescript}}" /></br>
+                Keyword<br>
+                <input type="text" name="pkeyword" value="{{product.pkeyword}}"/></br>
+                State<br>
+                <input type="text" name="pstate" value="{{product.pstate}}"><br>
+                
+
+                <input type="submit" value="수정하기"/>
+            </form>
+        </section>
+    </body>
+</html>

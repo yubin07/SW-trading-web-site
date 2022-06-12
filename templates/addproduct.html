@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta chartset="UTF-8">
+        <title>Posting!</title>
+        <!-- link the css file -->
+        <link rel="stylesheet" href="static/style.css"> 
+        <!-- link for the icons in the website -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>   
+        <script type="text/javascript" src="../static/script.js"></script> 
+    </head>
+    <body>
+        <!-- the section where the menu bar is -->
+        <section id="header">  
+            <div>
+                <!-- The navigation bar -->
+                <!-- activate is the page we are in actually -->
+                <ul id="navbar">
+                    <li><a href="{{url_for('home')}}">Home</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul id="navbar">
+                    <li><a href="{{url_for('followee')}}">Followee</a></li>
+                    <li><a class="active" href="{{url_for('mypage')}}"><i class="fas fa-user"></i></a></li>
+                    <li><a href="{{url_for('logout')}}">Logout</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="adding_pro">
+            <div class="contain_add">
+                {% with message = get_flashed_messages() %}
+                    {% if message %}
+                        {% for msg in message %}
+                            <p id="flash">{{msg}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form id="form" action="{{url_for('addproduct')}}" method="POST" enctype = "multipart/form-data">
+                    <br><h2 class="formTitle">Post your product!</h2>
+                    <div class="form_newprod">
+                        <input type="text" name="pname" autofocus placeholder="Product name" /><br>
+                        <input type="text" name="pdescript" placeholder="Description"/></br>
+                        <input type = "file" name = "file" /> <br>
+                        <input type="text" name="pkeyword" placeholder="Keyword"/></br>
+                        
+                        <input type="radio" name="pstate" value = "SELL" checked="checked">SELL
+                        <input type="radio" name="pstate" value = "SOLD" >SOLD
+
+                    </div>
+                    <button class="addbutton" type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

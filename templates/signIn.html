@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="static/style.css">
+        <script type="text/javascript" src="../static/script.js"></script>
+    </head>
+    <body class = "body">
+        <div class="container">
+            {% with message = get_flashed_messages() %}
+                {% if message %}
+                    {% for msg in message %}
+                        <p id="flash">{{msg}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form id="form" method="POST" action="{{url_for('login')}}" name="myForm">
+                <h1 class = "formTitle">Login</h1>
+                <div class="formInput">
+                    <input type="text" name="username" autofocus placeholder="Username" required><br>
+                    <input type="password" name="password" placeholder="password" required>
+                </div>
+                <button class="formButton" type="submit">Login</button>
+                <p class="formText">
+                    <a href="{{ url_for('signup') }}">Don't have an account? Sign Up</a>
+                </p>
+            </form>
+        </div>
+    </body>
+</html>

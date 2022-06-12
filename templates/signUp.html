@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign up</title>
+        <link rel="stylesheet" href="static/style.css">
+        <script type="text/javascript" src="../static/script.js"></script>
+    </head>
+
+
+    <body class = "body">
+        <div class="container">
+            {% with message = get_flashed_messages() %}
+                {% if message %}
+                    {% for msg in message %}
+                        <p id="flash">{{msg}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form id="form" method="POST" action="{{url_for('signup')}}">
+                <h1 class = "formTitle">Sign up</h1>
+                <div class="formInput">
+                    <input type="text" name="fullname" autofocus placeholder="Fullname" required><br>
+                    <input type="text" name="username" placeholder="Username" required><br>
+                    <input type="password" name="password" placeholder="password" required><br>
+                    <input type="password" name="repassword" placeholder="confirm password" required>
+                </div>
+                <button class="formButton" type="submit">Confirm</button>
+                <p class="formText">
+                    <a href="{{ url_for('login') }}">Already have an account? Sign in</a>
+                </p>
+            </form>
+        </div>
+    </body>
+</html>

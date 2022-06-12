@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta chartset="UTF-8">
+        <title>software project traiding site</title>
+        <!-- link the css file -->
+        <link rel="stylesheet" href="static/style.css"> 
+        <!-- link for the icons in the website -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>   
+        <script type="text/javascript" src="../static/script.js"></script> 
+    </head>
+    <body>
+        <!-- the section where the menu bar is -->
+        <section id="header">  
+            <div>
+                <!-- The navigation bar -->
+                <!-- activate is the page we are in actually -->
+                <ul id="navbar">
+                    <li><a class="active" href="{{url_for('home')}}">Home</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul id="navbar">
+                    <li><a href="{{url_for('followee')}}">Followee</a></li>
+                    <li><a href="{{url_for('mypage')}}"><i class="fas fa-user"></i></a></li>
+                    <li><a href="{{url_for('logout')}}">Logout</a></li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section id="products">
+            <div class="pro-container">
+                <form id="form">
+                    <h1 class = "formTitle">Product Details</h1>
+                    <div >{% for elem in product_detail %}
+                        {{elem.pname}}<br>
+                        {{elem.pdescript}}<br>
+                        {{elem.pkeyword}}<br>
+                        <img src="{{url_for('static', filename='elem.pimag')}}" /><br>
+                        <a href="/userpage/{{product_detail.puser}}">{{elem.puser}}</a><br>
+                        {% endfor %}
+                    </div>
+                    {% if product_detail.pstate == sell %}
+                     <button>Buy</button>
+                    {% else %}
+                    <p class="formText">
+                        <a href="{{ url_for('home') }}">See other products!</a>
+                    </p>
+                    {% endif %}
+                </form>
+
+
+             
+            </div>
+        </section>
+    </body>
+</html> 
+    </body>
+</html>

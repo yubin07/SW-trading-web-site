@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta chartset="UTF-8">
+        <title>software project traiding site</title>
+        <!-- link the css file -->
+        <link rel="stylesheet" href="static/style.css"> 
+        <!-- link for the icons in the website -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>   
+        <script type="text/javascript" src="../static/script.js"></script> 
+    </head>
+    <body>
+        <!-- the section where the menu bar is -->
+        <section id="header">  
+            <div>
+                <!-- The navigation bar -->
+                <!-- activate is the page we are in actually -->
+                <ul id="navbar">
+                    <li><a class="active" href="{{url_for('index')}}">Home</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <ul id="navbar">
+                    <li><a href="{{url_for('login')}}">Sign in</a></li>
+                    <li><a href="{{url_for('signup')}}">Sign up</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="products">
+            <br><h2 class="formTitle">Products</h2>
+            <div class="pro-container">
+                <table class="prod-table" id="prod-table">
+                    <thead>
+                        <tr>
+                            <th>product name</th>
+                            <th>description</th>
+                            <th>keyword</th>
+                            <th>state</th>
+                            <th>User</th>
+                        </tr>
+                    </thead>
+                    <tbody>{% for new_product in Products %}
+                        <tr>
+                            <td>{{new_product.pname}}</td>
+                            <td>{{new_product.pdescript}}</td>
+                            <td> {{new_product.pkeyword}}</td>
+                            <td> {{new_product.pstate}}</td>
+                            <td>{{new_product.puser}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </body>
+</html>

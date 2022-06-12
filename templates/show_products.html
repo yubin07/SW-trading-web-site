@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta chartset="UTF-8">
+        <title>Show List</title>
+        <!-- link the css file -->
+        <link rel="stylesheet" href="static/style.css"> 
+        <!-- link for the icons in the website -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>   
+        <script type="text/javascript" src="../static/script.js"></script> 
+    </head>
+    <body>
+        <!-- the section where the menu bar is -->
+        <nav id="header">  
+            <div>
+                <!-- The navigation bar -->
+                <!-- activate is the page we are in actually -->
+                <ul id="navbar">
+                    <li><a href="{{url_for('index')}}">Home</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul id="navbar">
+                    <li><a href="{{url_for('followee')}}">Followee</a></li>
+                    <li><a class="active" href="{{url_for('mypage')}}"><i class="fas fa-user"></i></a></li>
+                    <li><a href="{{url_for('logout')}}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    <table>
+        <h6>
+        <td>product name</td>
+        <td>description</td>
+        <td>keyword</td>
+        <td>state</td>
+        <td>User</td>
+        </h6>
+        <tbody>{% for new_product in Products %}</tbody>
+        <tr>
+       <td>{{new_product.pname}}</td>
+       <td>{{new_product.pdescript}}</td>
+       <td> {{new_product.pkeyword}}</td>
+       <td> {{new_product.pstate}}</td>
+       <td>{{new_product.puser}}</td>
+        <!--<td><a href="{{url_for('userpage')}}"> {{new_product.puser}}</a></td>-->
+       {% endfor %}
+    </tr>
+    </table>
+    </html>
+    
+    

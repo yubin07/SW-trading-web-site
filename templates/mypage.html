@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta chartset="UTF-8">
+        <title>mypage</title>
+        <!-- link the css file -->
+        <link rel="stylesheet" href="static/style.css"> 
+        <!-- link for the icons in the website -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>   
+        <script type="text/javascript" src="../static/script.js"></script> 
+    </head>
+    <body>
+        <!-- the section where the menu bar is -->
+        <nav id="header">  
+            <div>
+                <!-- The navigation bar -->
+                <!-- activate is the page we are in actually -->
+                <ul id="navbar">
+                    <li><a href="{{url_for('home')}}">Home</a></li>
+                </ul>
+            </div>
+
+            <div class="search_bar">
+                <form class="search_form">
+                    <div class="search-sign">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <input type="text" name="" id="search-item" placeholder="search keywords" onkeyup="search()">
+                </form>
+            </div>
+
+            <div>
+                <ul id="navbar">
+                    <li><a href="{{url_for('followee')}}">Followee</a></li>
+                    <li><a class="active" href="{{url_for('mypage')}}"><i class="fas fa-user"></i></a></li>
+                    <li><a href="{{url_for('logout')}}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section id="myprofile">
+
+        </section>
+
+        <section id="products">
+            <div class="post_container">
+                <a href="{{url_for('addproduct')}}">
+                    <button class="post_button">Post a new product</button>
+                </a>
+                {% with message = get_flashed_messages() %}
+                    {% if message %}
+                        {% for msg in message %}
+                            <p id="flash">{{msg}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="pro-container">
+                <table class="prod-table" id="prod-table">
+                    <thead>
+                        <tr>
+                            <th>product name</th>
+                            <th>description</th>
+                            <th>keyword</th>
+                            <th>state</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>{% for new_product in Products_my %}
+                        <tr>
+                            <td>{{new_product.pname}}</td>
+                            <td>{{new_product.pdescript}}</td>
+                            <td> {{new_product.pkeyword}}</td>
+                            <td> {{new_product.pstate}}</td>
+                            <td>
+                                <div class="editdel">
+                                    <a class="delete_button" href = "/delete/{{new_product.id}}">Delete </a>
+                                    <a href="/edit/{{new_product.id}}"> edit</a>
+                                </div>
+                            </td>
+                            <!--edit,delete button insert-->
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </body>
+</html>
